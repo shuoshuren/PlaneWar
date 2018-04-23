@@ -15,7 +15,12 @@ class PlaneGame(object):
         self.__create_sprites()
 
     def __create_sprites(self):
-        pass
+
+        # 创建背景精灵和精灵组
+        bg1 = BackGround()
+        bg2 = BackGround(True)
+
+        self.back_group = pygame.sprite.Group(bg1, bg2)
 
     def start_game(self):
         print("游戏开始...")
@@ -43,7 +48,9 @@ class PlaneGame(object):
         pass
 
     def __update_sprites(self):
-        pass
+
+        self.back_group.update()
+        self.back_group.draw(self.screen)
 
     @staticmethod
     def __game_over():
