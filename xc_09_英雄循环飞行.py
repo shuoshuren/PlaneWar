@@ -28,7 +28,7 @@ while True:
     # 2.修改飞机的位置
     hero_rect.y -= 1
     # 判断飞机的位置
-    if hero_rect.y <= -126:
+    if hero_rect.bottom <= 0:
         hero_rect.y = 700
     # 3.调用blit方法绘制图像
     screen.blit(bg, (0, 0))
