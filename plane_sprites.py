@@ -1,5 +1,9 @@
 import pygame
 
+# 屏幕大小的常量
+SCREEN_RECT = pygame.Rect(0, 0, 480, 700)
+# 刷新频率
+FPS = 60
 
 class GameSpite(pygame.sprite.Sprite):
     """飞机大战游戏精灵"""
