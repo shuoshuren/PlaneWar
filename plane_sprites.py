@@ -1,9 +1,12 @@
+import random
 import pygame
 
 # 屏幕大小的常量
 SCREEN_RECT = pygame.Rect(0, 0, 480, 700)
 # 刷新频率
 FPS = 60
+# 敌机出现的事件id
+CREATE_ENEMY_EVENT = pygame.USEREVENT
 
 
 class GameSpite(pygame.sprite.Sprite):
@@ -39,3 +42,30 @@ class BackGround(GameSpite):
         # 2.判断是否移出屏幕,如果移出屏幕,则将图像设置到屏幕的上方
         if self.rect.y >= SCREEN_RECT.height:
             self.rect.y = -self.rect.height
+
+
+class Enemy(GameSpite):
+    """敌机精灵"""
+
+    def __init__(self):
+        # 1.调用父类方法，创建敌机精灵，指定敌机图片
+        super().__init__("./images/enemy1.png")
+        # 2.指定敌机的初始随机速度
+        self.speed = random.randint(1, 3)
+        # 3.自定敌机的初始随机位置
+        self.rect.bottom = 0
+
+        max_x = SCREEN_RECT.width - self.rect.width
+        self.rect.x = random.randint(0, max_x)
+
+    def update(self):
+        # 1.调用父类方法，保持垂直方向的飞行
+        super().update()
+
+        # 2.判断是否飞出屏幕，如果是，需要从精灵组中删除
+        if self.rect.y >= SCREEN_RECT.height:
+            # kill方法可以将精灵从所有精灵组中删除，精灵就会自动销毁
+            self.kill()
+
+    def __del__(self):
+        print("敌机挂了 %s" % self.rect)
