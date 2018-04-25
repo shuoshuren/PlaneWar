@@ -25,8 +25,8 @@ clock = pygame.time.Clock()
 hero_rect = pygame.Rect(150, 500, 102, 126)
 
 # 创建敌机的精灵
-enemy = GameSpite("./images/enemy1.png")
-enemy1 = GameSpite("./images/enemy1.png", 2)
+enemy = GameSprite("./images/enemy1.png")
+enemy1 = GameSprite("./images/enemy1.png", 2)
 
 # 创建敌机的精灵组
 enemy_group = pygame.sprite.Group(enemy, enemy1)

@@ -16,6 +16,8 @@ class PlaneGame(object):
 
         # 4.设置定时器事件，创建敌机
         pygame.time.set_timer(CREATE_ENEMY_EVENT, 1000)
+        # 设置定时器，发射子弹
+        pygame.time.set_timer(HERO_FIRE_EVENT, 500)
 
     def __create_sprites(self):
 
@@ -62,6 +64,8 @@ class PlaneGame(object):
                 self.enemy_group.add(enemy)
             # elif event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
             #     print("向右边移动...")
+            elif event.type == HERO_FIRE_EVENT:
+                self.hero.fire()
 
         # 使用键盘提供的方法获取键盘按键
         keys_pressed = pygame.key.get_pressed()
@@ -88,6 +92,9 @@ class PlaneGame(object):
 
         self.hero_group.update()
         self.hero_group.draw(self.screen)
+
+        self.hero.bullets.update()
+        self.hero.bullets.draw(self.screen)
 
     @staticmethod
     def __game_over():
