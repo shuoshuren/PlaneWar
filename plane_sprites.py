@@ -69,3 +69,27 @@ class Enemy(GameSpite):
 
     def __del__(self):
         print("敌机挂了 %s" % self.rect)
+
+
+class Hero(GameSpite):
+    """英雄精灵"""
+
+    def __init__(self):
+
+        # 1.调用父类方法，设置image和speed
+        super().__init__("./images/me1.png", 0)
+
+        # 2.设置英雄的位置
+        self.rect.centerx = SCREEN_RECT.centerx
+        self.rect.bottom = SCREEN_RECT.bottom - 120
+
+    def update(self):
+
+        # 英雄在水平方向移动
+        self.rect.x += self.speed
+
+        # 控制英雄不能离开屏幕
+        if self.rect.x < 0:
+            self.rect.x = 0
+        elif self.rect.right > SCREEN_RECT.width:
+            self.rect.right = SCREEN_RECT.width
